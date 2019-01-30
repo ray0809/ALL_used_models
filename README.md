@@ -1,2 +1,2 @@
 # ALL_used_models
-this repository stores all models I have written
+this repository stores all keras code I have written
