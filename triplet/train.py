@@ -1,7 +1,7 @@
 #coding=utf-8
 import os
 import sys
-from keras.optimizers import Adam
+from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint
 from keras.losses import categorical_crossentropy
 
@@ -19,7 +19,8 @@ def main(main_path):
     当搭建的模型是由多个其他的base model拼凑而成的，那么直接加载之前冻层训练的权重会出错
     需要先在冻结前加载，随后遍历将所有解冻
     '''
-    tripletnet,need_save_model = TripletNet(freezen=False,margin=1)
+    tripletnet,need_save_model = TripletNet(freezen=False,margin=0.2)
+    # tripletnet.load_weights('weights/20190130_best.h5', by_name=True)
     # for layer in resnet.layers:
     #     if isinstance(layer, Model):
     #         for ly in layer.layers:
@@ -28,7 +29,9 @@ def main(main_path):
     #         layer.trainable = True
     ############################################################
     tripletnet.summary()
-    tripletnet.compile(optimizer='adam',loss=lambda y_true,y_pred: y_pred)
+    sgd = SGD(lr=1e-4, momentum=0.9, nesterov=True)
+    adam = Adam(lr=1e-5)
+    tripletnet.compile(optimizer=adam,loss=lambda y_true,y_pred: y_pred)
 
     samples = GetSampling(main_path)
     train_samples = [i[:int(len(i)*0.9)] for i in samples]
@@ -37,10 +40,10 @@ def main(main_path):
     trainTrans = Compose([RandomRotation(20,expand=True),
 							RandomHorizontalFlip(0.5),
 							Resize(size=(224,224))])
-    train = dataLoader(train_samples, batch_size=8, transformer=trainTrans, shuffle=True)
+    train = dataLoader(train_samples, batch_size=5, transformer=trainTrans, shuffle=True)
 
     testTrans = Compose([Resize(size=(224,224))])
-    test = dataLoader(test_samples, batch_size=8, transformer=testTrans)
+    test = dataLoader(test_samples, batch_size=5, transformer=testTrans)
     modelcheck = MyModelCheckpoint('weights/20190130_best.h5',need_save_model,save_best_only=True,save_weights_only=False)
     tripletnet.fit_generator(train,
             steps_per_epoch=train.__len__(),

@@ -2,7 +2,9 @@
 import os
 import warnings
 import numpy as np
+from tqdm import tqdm
 from keras.callbacks import Callback
+from keras.preprocessing import image
 
 
 
@@ -76,4 +78,33 @@ class MyModelCheckpoint(Callback):
                     self.mymodel.save(filepath, overwrite=True)
 
 
+def idx2path(mainpath):
+    '''
+    主要是为了图像跟特征的索引保持一致，后续测试检索返回结果图需要它
+    '''
+    fullpath = []
+    for root, dirs, files in os.walk(mainpath):
+            for f in files:
+                if 'jpg' in f:
+                    fullpath.append(os.path.join(root,f))
+    fullpath = np.sort(fullpath)
+    return fullpath
 
+
+def ExtractFeats(mainpath, net, full=True):
+    path = idx2path(mainpath)
+    result = []
+    for i, p in enumerate(tqdm(path)):
+        feat = ExtractOneFeat(p, net)
+        result.append(feat)
+    result = np.matrix(result)
+    if not os.path.isdir('features'):
+        os.makedirs('features/')
+    np.save('features/FullFeatures.npy',result)
+    return 
+
+def ExtractOneFeat(path, net, target_size=(224,224)):
+    img = image.load_img(path, target_size=target_size, interpolation='bilinear')
+    img = np.expand_dims(image.img_to_array(img), 0)
+    feat = net.predict(img.astype('float32'))
+    return feat[0]
