@@ -7,6 +7,7 @@ from tqdm import tqdm
 from keras.preprocessing import image
 
 
+
 def crtTxt(path):
     '''
     做txt主要目的是为了知道哪个类别对应的数字，如果不在意的话，其实这一步可以放到datalaoder里面
