@@ -36,8 +36,8 @@ $ python train.py imgs主目录 masks主目录
 
 
 ## 参考
-  - [qubvel]([https://github.com/keras-team/keras/issues/9498](https://github.com/qubvel/segmentation_models))：构建了几个分割模型库，方便直接调用，省去了手撸，添加了预训练权重（iamgenet），适当的可以微调
-  - [keras issue#11796]([https://stackoverflow.com/questions/41075993/facenet-triplet-loss-with-keras](https://github.com/keras-team/keras/issues/11796))：keras训练过程保存model的一个问题
+  - [qubvel](https://github.com/qubvel/segmentation_models))：构建了几个分割模型库，方便直接调用，省去了手撸，添加了预训练权重（iamgenet），适当的可以微调
+  - [keras issue#11796](https://github.com/keras-team/keras/issues/11796))：keras训练过程保存model的一个问题
   - [albumentations](https://github.com/albu/albumentations)：一个强大数据增强库，适用于分类，分割，检测
 
 
