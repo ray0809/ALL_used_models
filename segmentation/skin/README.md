@@ -17,15 +17,16 @@ torchvision:0.2.1
 
 ## 数据
 如果想训练你自己的数据，那么你的数据结构需要如下（文件夹格式）
-DATA_DIR/
-           |-- imgs/
-           |    |-- xxx1.jpg
-           |    |-- xxx2.jpg
-           |    |-- ...
-           |-- masks/
-           |    |-- xxx1.png
-           |    |-- xxx2.png
-           |    |-- ...
+
+        DATA_DIR/
+                |-- imgs/
+                |    |-- xxx1.jpg
+                |    |-- xxx2.jpg
+                |    |-- ...
+                |-- masks/
+                |    |-- xxx1.png
+                |    |-- xxx2.png
+                |    |-- ...
 
 ## 训练
 ```
@@ -37,7 +38,7 @@ $ python train.py imgs主目录 masks主目录
 
 ## 测试结果展示
 <div align="center">
-<img src="[demo/blouse.png](https://github.com/ray0809/keras/blob/master/segmentation/skin/images/00056.jpg)" width="256"/> <img src="[demo/dress.png](https://github.com/ray0809/keras/blob/master/segmentation/skin/images/00057.jpg)" width="256"/>
+<img src="images/00056.jpg" width="256"/> <img src="images/00057.jpg" width="256"/>
 <p> results of segmentation </p>
 </div>
 
