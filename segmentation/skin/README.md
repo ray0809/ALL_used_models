@@ -18,15 +18,15 @@ torchvision:0.2.1
 ## 数据
 我的数据来源于：
 如果想训练你自己的数据，那么你的数据结构需要如下（文件夹格式）
-    DATA_DIR/
-            |-- imgs/
-            |    |-- xxx1.jpg
-            |    |-- xxx2.jpg
-            |    |-- ...
-            |-- masks/
-            |    |-- xxx1.png
-            |    |-- xxx2.png
-            |    |-- ...
+        DATA_DIR/
+                |-- imgs/
+                |    |-- xxx1.jpg
+                |    |-- xxx2.jpg
+                |    |-- ...
+                |-- masks/
+                |    |-- xxx1.png
+                |    |-- xxx2.png
+                |    |-- ...
 
 ## 训练
 ```
