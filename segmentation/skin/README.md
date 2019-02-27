@@ -16,17 +16,17 @@ torchvision:0.2.1
 
 
 ## 数据
+我的数据来源于：
 如果想训练你自己的数据，那么你的数据结构需要如下（文件夹格式）
-
-        DATA_DIR/
-                |-- imgs/
-                |    |-- xxx1.jpg
-                |    |-- xxx2.jpg
-                |    |-- ...
-                |-- masks/
-                |    |-- xxx1.png
-                |    |-- xxx2.png
-                |    |-- ...
+    DATA_DIR/
+            |-- imgs/
+            |    |-- xxx1.jpg
+            |    |-- xxx2.jpg
+            |    |-- ...
+            |-- masks/
+            |    |-- xxx1.png
+            |    |-- xxx2.png
+            |    |-- ...
 
 ## 训练
 ```
@@ -34,7 +34,12 @@ $ python train.py imgs主目录 masks主目录
 ```
 训练之前会按照9:1自动划分训练和验证，并且会自动保存到txt文件夹内
 
-
+## 文件介绍
+- data_info和eval_iou都是使用了[ESPNet](https://github.com/sacmehta/ESPNet)下的代码，主要用于计算label权重和每次迭代末计算各种评测指标
+- data_loader，数据生成器，能够自动读取图片，自动进行train/val划分，自动保存txt以备后续验证结果
+- dataAug，用于测试
+- utils，keras的一些回调函数放置处
+- train，训练主函数
 
 ## 测试结果展示
 <div align="center">
