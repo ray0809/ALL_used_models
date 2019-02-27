@@ -16,8 +16,9 @@ torchvision:0.2.1
 
 
 ## 数据
-我的数据来源于：
-如果想训练你自己的数据，那么你的数据结构需要如下（文件夹格式）
+我的数据来源于：[LIP](http://sysu-hcp.net/lip/overview.php)，拿到的human parsing数据先试用人脸检测抠出人脸部分，做上半身的皮肤分割。
+如果想训练你自己的数据，那么你的数据结构需要如下（文件夹格式）  
+
         DATA_DIR/
                 |-- imgs/
                 |    |-- xxx1.jpg
