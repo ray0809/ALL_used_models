@@ -2,6 +2,8 @@
 import cv2
 import numpy as np
 
+__author__ = "Sachin Mehta"
+
 class LoadData:
     def __init__(self, samples, classes, normVal=1.10):
         self.samples = samples
