@@ -31,7 +31,7 @@ ACTIVATION = 'sigmoid'
 
 
 
-def main(imgfile, maskfile, pre_train_weight):
+def main(imgfile, maskfile):
     # define data aug
     train_aug = Compose([Resize(height=HEIGHT,width=WIDTH,interpolation=cv2.INTER_CUBIC),
                 RandomRotate90(p=0.5),
@@ -45,7 +45,7 @@ def main(imgfile, maskfile, pre_train_weight):
     # define model
     model = crtModel(HEIGHT, WIDTH, CLASSNB, 
                     activation=ACTIVATION,
-                    pre_train=pre_train_weight)
+                    backbone='mobilenetv2')
     parallel_model = multi_gpu_model(model, gpus=2)
     parallel_model.compile('Adam', loss=bce_dice_loss, metrics=[iou_score])
     
@@ -80,5 +80,4 @@ def main(imgfile, maskfile, pre_train_weight):
 
 if __name__ == '__main__':
     imgfile, maskfile = sys.argv[1], sys.argv[2]
-    pre_train_weight = sys.argv[3]
-    main(imgfile, maskfile, pre_train_weight)
+    main(imgfile, maskfile)
