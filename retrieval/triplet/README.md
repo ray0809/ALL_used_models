@@ -42,5 +42,5 @@ $ python test.py 模型目录 joblib路径 测试数据集路径
 
 
 ## 讨论
-这里实验使用的是cifar10的数据集，10000作为测试，resnet38作为base_model，得到的mAP为93.5%，并未做data augmentation，只是直接的resize
+这里实验使用的是cifar10的数据集，10000作为测试，resnet38作为base_model，得到的mAP为61.71%，并未做data augmentation，只是直接的resize
 
